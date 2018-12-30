@@ -24,6 +24,9 @@ class Block {
   paint(tick) {
     this.material.color = Rainbow.getColor(this.tickOffset + tick);
   }
+  paintWhite() {
+    this.material.color = {r: 1, g: 1, b: 1};
+  }
   static original(scene) {
     return new Block(scene, {x: 0, y: 0, z: 0}, 0, {});
   }
