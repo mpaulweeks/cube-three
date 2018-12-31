@@ -64,17 +64,13 @@
       raycaster.setFromCamera(mouse, camera);
       const intersects = raycaster.intersectObjects(scene.children);
       if (intersects.length > 0) {
-        if (INTERSECTED != intersects[ 0 ].object) {
-          if (INTERSECTED) {
-            // todo unhighlight
-          }
-          INTERSECTED = intersects[0].object;
-          // todo highlight
-          console.log(INTERSECTED);
-        }
+        INTERSECTED = intersects[0].object;
       } else {
-        // todo unhighlight
         INTERSECTED = null;
+      }
+
+      if (INTERSECTED) {
+        INTERSECTED.block.paintWhite();
       }
 
       renderer.render(scene, camera);

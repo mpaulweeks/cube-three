@@ -15,6 +15,7 @@ class Block {
     this.settings = settings;
 
     // setup
+    this.model.block = this;
     this.scene.add(this.model);
   }
   rotate() {
