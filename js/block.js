@@ -37,13 +37,18 @@ class Block {
     this.mesh.rotation.z += 0.01;
   }
   paint(tick) {
-    this.material.color = Rainbow.getColor(this.tickOffset + tick);
+    this.material.color = Rainbow.getColor(this.tickOffset + tick, this.settings);
   }
   paintWhite() {
     this.material.color = {r: 1, g: 1, b: 1};
   }
   static original(scene) {
-    return new Block(scene, {x: 0, y: 0, z: 0}, 0, {});
+    return new Block(scene, {x: 0, y: 0, z: 0}, 0, {
+      colorFreq: 0,
+      phaseDelta: 0,
+      colorRange: 1,
+      colorFloor: 1,
+    });
   }
   clone() {
     const positionSpread = 1;
@@ -54,8 +59,9 @@ class Block {
         y: this.mesh.position.y + range(positionSpread),
         z: this.mesh.position.z + range(positionSpread / 10),
       },
-      this.tickOffset + range(10),
-      this.settings
+      this.tickOffset,
+      // this.tickOffset + range(10),
+      mutate(this.settings)
     );
   }
 }
