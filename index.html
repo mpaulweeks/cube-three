@@ -37,16 +37,16 @@
     let INTERSECTED = undefined;
 
     const block = Block.original(scene);
-    const blocks = [block];
-    for (let i = 0; i < 50; i++){
-      const last = blocks[blocks.length - 1];
-      blocks.push(last.clone());
+    for (let i = 0; i < 1000; i++){
+      const last = scene.children[scene.children.length - 1].block;
+      last.clone();
     };
 
     let tick = 0;
     function step(){
       tick += 0.1;
-      blocks.forEach(b => {
+      scene.children.forEach(mesh => {
+        const b = mesh.block;
         b.rotate();
         b.paint(tick);
       });
@@ -75,14 +75,25 @@
       camera.updateProjectionMatrix();
       renderer.setSize( window.innerWidth, window.innerHeight );
     }
-    window.addEventListener( 'resize', onWindowResize, false );
+    window.addEventListener('resize', onWindowResize, false);
 
-    function onDocumentMouseMove( event ) {
+    function onDocumentMouseMove(event) {
       event.preventDefault();
-      mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-      mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
     }
-    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+    document.addEventListener('mousemove', onDocumentMouseMove, false);
+
+    function onDocumentMouseDown(event) {
+      event.preventDefault();
+      if (INTERSECTED) {
+        INTERSECTED.block.clone();
+        INTERSECTED.block.clone();
+        INTERSECTED.block.clone();
+        INTERSECTED.block.clone();
+      }
+    }
+    document.addEventListener('mousedown', onDocumentMouseDown, false);
 
     // start
     animate();
