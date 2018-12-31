@@ -40,7 +40,7 @@
     const block = Block.original(scene);
     for (let i = 0; i < 1000; i++){
       const last = scene.children[scene.children.length - 1].block;
-      last.clone();
+      // last.clone();
     };
 
     let tick = 0;
@@ -78,10 +78,14 @@
     }
     window.addEventListener('resize', onWindowResize, false);
 
+    let moveTick = 0;
     function onDocumentMouseMove(event) {
       event.preventDefault();
+      const mouseCorrector = 4;
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
       mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+      moveTick += 0.1;
+      Block.spawnAt(scene, mouse.x * mouseCorrector, mouse.y * mouseCorrector, moveTick);
     }
     document.addEventListener('mousemove', onDocumentMouseMove, false);
 

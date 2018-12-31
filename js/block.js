@@ -43,12 +43,38 @@ class Block {
     this.material.color = {r: 1, g: 1, b: 1};
   }
   static original(scene) {
-    return new Block(scene, {x: 0, y: 0, z: 0}, 0, {
-      colorFreq: 0,
-      phaseDelta: 0,
-      colorRange: 1,
-      colorFloor: 1,
-    });
+    return new Block(
+      scene,
+      {
+        x: 0,
+        y: 0,
+        z: 0,
+      },
+      0,
+      {
+        colorFreq: 0,
+        phaseDelta: 0,
+        colorRange: 1,
+        colorFloor: 1,
+      }
+    );
+  }
+  static spawnAt(scene, x, y, tickOffset) {
+    return new Block(
+      scene,
+      {
+        x: x,
+        y: y,
+        z: 0,
+      },
+      tickOffset,
+      {
+        colorFreq: 0,
+        phaseDelta: 0,
+        colorRange: 1,
+        colorFloor: 1,
+      }
+    );
   }
   clone() {
     const positionSpread = 1;
