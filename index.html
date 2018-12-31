@@ -37,16 +37,11 @@
     let INTERSECTED = undefined;
 
     const block = Block.original(scene);
-    const blocks = [
-      block,
-      block.clone(),
-      block.clone(),
-      block.clone(),
-      block.clone(),
-      block.clone(),
-      block.clone(),
-      block.clone(),
-    ];
+    const blocks = [block];
+    for (let i = 0; i < 50; i++){
+      const last = blocks[blocks.length - 1];
+      blocks.push(last.clone());
+    };
 
     let tick = 0;
     function step(){
@@ -94,3 +89,4 @@
   </script>
 </body>
 </html>
+<!--  -->
