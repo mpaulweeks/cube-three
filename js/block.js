@@ -2,13 +2,22 @@ function range(delta){
   return (Math.random() * 2 * delta) - delta;
 }
 
+const loader = new THREE.CubeTextureLoader();
+loader.setPath( 'textures/' );
+const textureCube = loader.load(
+  [0,1,2,3,4,5].map(i => 'ben.png'),
+  THREE.CubeRefractionMapping
+);
+
 class Block {
   constructor(scene, position, tickOffset, settings) {
     this.scene = scene;
-    const cubeSide = 0.4;
+    const cubeSide = 2.0;
     const geometry = new THREE.BoxBufferGeometry(cubeSide, cubeSide, cubeSide);
+
     this.material = new THREE.MeshBasicMaterial({
       color: 0xffffff,
+      envMap: textureCube,
       polygonOffset: true,
       polygonOffsetFactor: 1, // positive value pushes polygon further away
       polygonOffsetUnits: 1,
@@ -22,7 +31,8 @@ class Block {
     const geo = new THREE.EdgesGeometry( geometry ); // or WireframeGeometry
     const mat = new THREE.LineBasicMaterial( { color: 0xffffff, linewidth: 2 } );
     const wireframe = new THREE.LineSegments( geo, mat );
-    this.mesh.add( wireframe );
+    // todo option for border
+    // this.mesh.add( wireframe );
 
     this.tickOffset = tickOffset;
     this.settings = settings;
@@ -32,9 +42,9 @@ class Block {
     this.scene.add(this.mesh);
   }
   rotate() {
-    this.mesh.rotation.x += 0.01;
-    this.mesh.rotation.y += 0.01;
-    this.mesh.rotation.z += 0.01;
+    this.mesh.rotation.x += 0.004;
+    this.mesh.rotation.y += 0.004;
+    this.mesh.rotation.z += 0.004;
   }
   paint(tick) {
     this.material.color = Rainbow.getColor(this.tickOffset + tick, this.settings);
