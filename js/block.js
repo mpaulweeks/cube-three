@@ -5,14 +5,13 @@ function range(delta){
 const loader = new THREE.CubeTextureLoader();
 loader.setPath( 'textures/' );
 const textureCube = loader.load(
-  [0,1,2,3,4,5].map(i => 'ben.png'),
-  THREE.CubeRefractionMapping
+  [0,1,2,3,4,5].map(i => 'pabloCube.png')
 );
 
 class Block {
   constructor(scene, position, tickOffset, settings) {
     this.scene = scene;
-    const cubeSide = 2.0;
+    const cubeSide = 1;
     const geometry = new THREE.BoxBufferGeometry(cubeSide, cubeSide, cubeSide);
 
     this.material = new THREE.MeshBasicMaterial({
