@@ -68,12 +68,12 @@ class Block {
       }
     );
   }
-  static spawnAt(scene, x, y, tickOffset) {
+  static spawnAt(scene, coord, tickOffset) {
     return new Block(
       scene,
       {
-        x: x,
-        y: y,
+        x: coord.x,
+        y: coord.y,
         z: 0,
       },
       tickOffset,

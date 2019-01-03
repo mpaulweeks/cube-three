@@ -1,6 +1,8 @@
 <html>
 <head>
-  <title>My first three.js app</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>cubism</title>
   <style>
     body {
       margin: 0;
@@ -13,14 +15,16 @@
 </head>
 <body>
   <script src="js/three.js"></script>
+  <script src="js/motion.js"></script>
   <script src="js/color.js"></script>
   <script src="js/settings.js"></script>
   <script src="js/block.js"></script>
   <script>
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    const aspectRatio = width / height;
+    let windowWidth = window.innerWidth;
+    let windowHeight = window.innerHeight;
+    let aspectRatio = windowWidth / windowHeight;
     const distance = 3;
+    const isMobile = mobileAndTabletCheck();
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
@@ -32,7 +36,7 @@
     camera.position.z = distance;
 
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(width, height);
+    renderer.setSize(windowWidth, windowHeight);
     document.body.appendChild(renderer.domElement);
 
     const raycaster = new THREE.Raycaster();
@@ -59,13 +63,15 @@
       requestAnimationFrame(animate);
       step();
 
-      // https://github.com/mrdoob/three.js/blob/master/examples/webgl_interactive_cubes.html
-      raycaster.setFromCamera(mouse, camera);
-      const intersects = raycaster.intersectObjects(scene.children);
-      if (intersects.length > 0) {
-        INTERSECTED = intersects[0].object;
-      } else {
-        INTERSECTED = null;
+      if (!isMobile) {
+        // https://github.com/mrdoob/three.js/blob/master/examples/webgl_interactive_cubes.html
+        raycaster.setFromCamera(mouse, camera);
+        const intersects = raycaster.intersectObjects(scene.children);
+        if (intersects.length > 0) {
+          INTERSECTED = intersects[0].object;
+        } else {
+          INTERSECTED = null;
+        }
       }
 
       if (INTERSECTED) {
@@ -75,48 +81,58 @@
       renderer.render(scene, camera);
     };
     function onWindowResize() {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      // reset constants
+      windowWidth = window.innerWidth;
+      windowHeight = window.innerHeight;
+      aspectRatio = windowWidth / windowHeight;
+
+      // update affected
+      camera.aspect = aspectRatio;
       camera.updateProjectionMatrix();
-      renderer.setSize( window.innerWidth, window.innerHeight );
+      renderer.setSize( windowWidth, windowHeight );
     }
     window.addEventListener('resize', onWindowResize, false);
 
     function updateMouse(event){
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+      mouse.x = (event.clientX / windowWidth) * 2 - 1;
+      mouse.y = - (event.clientY / windowHeight) * 2 + 1;
+    }
+    function convertMouseToSpace(){
+      return aspectRatio > 1 ? {
+        x: mouse.x * distance,
+        y: mouse.y * distance / aspectRatio,
+      } : {
+        x: mouse.x * distance * aspectRatio,
+        y: mouse.y * distance,
+      }
     }
 
     let moveTick = 0;
     function onDocumentMouseMove(event) {
-      event.preventDefault();
       updateMouse(event);
       if (MOUSE_DOWN){
         MOUSE_DOWN.isDrag = true;
         moveTick += 0.1;
         Block.spawnAt(
           scene,
-          mouse.x * distance,
-          mouse.y * distance / aspectRatio,
+          convertMouseToSpace(),
           moveTick
         );
       }
     }
     function onDocumentMouseDown(event) {
-      event.preventDefault();
       updateMouse(event);
       MOUSE_DOWN = {
         isDrag: false,
       };
     }
     function onDocumentMouseUp(event) {
-      event.preventDefault();
       if (MOUSE_DOWN){
         const { isDrag } = MOUSE_DOWN;
         if (!isDrag){
           const newBlock = Block.spawnAt(
             scene,
-            mouse.x * distance,
-            mouse.y * distance / aspectRatio,
+            convertMouseToSpace(),
             moveTick
           );
           newBlock.clone();
@@ -127,9 +143,7 @@
       }
       MOUSE_DOWN = undefined;
     }
-    document.addEventListener('mousemove', onDocumentMouseMove, false);
-    document.addEventListener('mousedown', onDocumentMouseDown, false);
-    document.addEventListener('mouseup', onDocumentMouseUp, false);
+    setupMotionListeners(onDocumentMouseMove, onDocumentMouseDown, onDocumentMouseUp);
 
     // start
     animate();
