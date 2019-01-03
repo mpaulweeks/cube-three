@@ -38,6 +38,7 @@
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
     let INTERSECTED = undefined;
+    let MOUSE_DOWN = undefined;
 
     const block = Block.original(scene);
     for (let i = 0; i < 1000; i++){
@@ -80,31 +81,55 @@
     }
     window.addEventListener('resize', onWindowResize, false);
 
+    function updateMouse(event){
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
+    }
+
     let moveTick = 0;
     function onDocumentMouseMove(event) {
       event.preventDefault();
-      moveTick += 0.1;
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = - (event.clientY / window.innerHeight) * 2 + 1;
-      Block.spawnAt(
-        scene,
-        mouse.x * distance,
-        mouse.y * distance / aspectRatio,
-        moveTick
-      );
-    }
-    document.addEventListener('mousemove', onDocumentMouseMove, false);
-
-    function onDocumentMouseDown(event) {
-      event.preventDefault();
-      if (INTERSECTED) {
-        INTERSECTED.block.clone();
-        INTERSECTED.block.clone();
-        INTERSECTED.block.clone();
-        INTERSECTED.block.clone();
+      updateMouse(event);
+      if (MOUSE_DOWN){
+        MOUSE_DOWN.isDrag = true;
+        moveTick += 0.1;
+        Block.spawnAt(
+          scene,
+          mouse.x * distance,
+          mouse.y * distance / aspectRatio,
+          moveTick
+        );
       }
     }
+    function onDocumentMouseDown(event) {
+      event.preventDefault();
+      updateMouse(event);
+      MOUSE_DOWN = {
+        isDrag: false,
+      };
+    }
+    function onDocumentMouseUp(event) {
+      event.preventDefault();
+      if (MOUSE_DOWN){
+        const { isDrag } = MOUSE_DOWN;
+        if (!isDrag){
+          const newBlock = Block.spawnAt(
+            scene,
+            mouse.x * distance,
+            mouse.y * distance / aspectRatio,
+            moveTick
+          );
+          newBlock.clone();
+          newBlock.clone();
+          newBlock.clone();
+          newBlock.clone();
+        }
+      }
+      MOUSE_DOWN = undefined;
+    }
+    document.addEventListener('mousemove', onDocumentMouseMove, false);
     document.addEventListener('mousedown', onDocumentMouseDown, false);
+    document.addEventListener('mouseup', onDocumentMouseUp, false);
 
     // start
     animate();
