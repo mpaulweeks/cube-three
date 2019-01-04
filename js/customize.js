@@ -2,23 +2,41 @@
 // init
 (function (){
   const elmTab = document.getElementById('tab');
-  const elmModal = document.getElementById('modal');
+  const elmModalContainer = document.getElementById('modal');
+  const elmModalCustomize = document.getElementById('modal-customize');
   const elmUploadButton = document.getElementById('upload-button');
+  const elmModalUpload = document.getElementById('modal-upload');
   const elmUploadInput = document.getElementById('upload-input');
   const elmUploadPreview = document.getElementById('upload-preview');
   const elmUploadConfirm = document.getElementById('upload-confirm');
-  const elmModalClose = document.getElementById('modal-close');
-
-  elmTab.addEventListener('click', evt => {
-    elmModal.classList.remove('hidden');
-  });
-
-  elmModalClose.addEventListener('click', evt => {
-    elmModal.classList.add('hidden');
-  });
-
+  const elmModalCustomizeClose = document.getElementById('modal-close');
+  const elmModalUploadCancel = document.getElementById('modal-upload-cancel');
   let cropSession = undefined;
-  elmUploadButton.addEventListener('click', e => {
+
+  // helpers sub-menu for upload
+  function openUploadMenu(){
+    elmModalCustomize.classList.add('hidden');
+    elmModalUpload.classList.remove('hidden');
+  }
+  function closeUploadMenu(){
+    elmModalCustomize.classList.remove('hidden');
+    elmModalUpload.classList.add('hidden');
+    elmUploadInput.value = '';
+    cropSession && cropSession.destroy();
+  }
+
+  // open/close modal
+  elmTab.addEventListener('click', evt => {
+    elmModalContainer.classList.remove('hidden');
+  });
+  elmModalCustomizeClose.addEventListener('click', evt => {
+    elmModalContainer.classList.add('hidden');
+  });
+  elmModalUploadCancel.addEventListener('click', evt => {
+    closeUploadMenu();
+  });
+
+  elmUploadButton.addEventListener('click', evt => {
     elmUploadInput.click();
   });
   elmUploadInput.addEventListener('change', e1 => {
@@ -30,9 +48,7 @@
     reader.readAsDataURL(e1.target.files[0]);
   }, false);
   elmUploadPreview.onload = () => {
-    elmUploadButton.classList.add('hidden');
-    elmUploadConfirm.classList.remove('hidden');
-
+    openUploadMenu();
     cropSession = new Croppie(elmUploadPreview, {
       enableExif: true,
       viewport: {
@@ -48,9 +64,6 @@
     window.cropSession = cropSession;
   };
   elmUploadConfirm.addEventListener('click', () => {
-    elmUploadButton.classList.remove('hidden');
-    elmUploadConfirm.classList.add('hidden');
-
     // todo figure this step out
     cropSession.result({
       format: 'jpeg',
@@ -58,6 +71,7 @@
     }).then(function(blob) {
       // set global textureCube
       TEXTURE.loadUploadedImage(blob);
+      closeUploadMenu();
     });
   })
 

@@ -2,7 +2,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>cubism</title>
+  <link rel="shortcut icon" href="preview.gif" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="cubism" />
+  <meta property="og:url" content="https://mpaulweeks.github.io/cubism" />
+  <meta property="og:image" content="https://mpaulweeks.github.io/cubism/preview.gif" />
+
 
   <!-- third party -->
   <link rel="stylesheet" href="css/croppie.css" />
@@ -26,23 +34,21 @@
   </div>
 
   <div id="modal" class="hidden">
-    <div id="modal-body">
+    <div id="modal-customize" class="modal-body">
       <div>
         <p>
           click and drag to make cubes
-        </p>
-        <p>
+          <br/>
           right click to delete the highlighted cube
         </p>
+      </div>
 
+      <div>
+        <p>
+          <img id="texture-preview" />
+        </p>
         <p>
           <button id="upload-button">upload custom image</button>
-          <button id="upload-confirm" class="hidden">confirm custom image</button>
-          <input id="upload-input" type="file" style="display: none;" />
-        </p>
-
-        <p>
-          <img id="upload-preview" />
         </p>
       </div>
 
@@ -54,6 +60,31 @@
         <p id="social">
           made by
           <a href="https://twitter.com/mpaulweeks">@mpaulweeks</a>
+        </p>
+      </div>
+    </div>
+    <div id="modal-upload" class="modal-body hidden">
+      <div>
+        <p>
+          customize your image
+          <br/>
+          it must fit in a square
+        </p>
+      </div>
+
+      <div>
+        <p>
+          <img id="upload-preview" />
+        </p>
+        <p>
+          <button id="upload-confirm">confirm custom image</button>
+          <input id="upload-input" type="file" style="display: none;" />
+        </p>
+      </div>
+
+      <div>
+        <p>
+          <button id="modal-upload-cancel">cancel</button>
         </p>
       </div>
     </div>

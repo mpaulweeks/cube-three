@@ -13,7 +13,9 @@ canvas {
 }
 button {
   font-size: 1rem;
+  padding: 0.5rem;
   border: 1px solid white;
+  border-radius: 0.3rem;
   cursor: pointer;
   color: white;
   background-color: black;
@@ -87,6 +89,7 @@ button:hover {
   left: 50%;
   transform: translate(-50%, -50%);
 
+  text-align: center;
   font-size: 1rem;
   color: white;
   background-color: rgba(128, 128, 128, 0.2);
@@ -103,18 +106,25 @@ button:hover {
 #modal.hidden {
   top: -100%;
 }
-#modal-body {
+#modal div.hidden {
+  display: none;
+}
+.modal-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   height: 100%;
 }
-#modal-body > div {
+.modal-body > div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+#texture-preview {
+  height: 40%;
 }
 
 #upload-button.hidden,

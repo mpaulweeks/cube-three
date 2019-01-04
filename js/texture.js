@@ -5,7 +5,8 @@ const TEXTURE = (() => {
       this.loadExternalImage();
     }
     updateExisting(){
-      // scene is global var
+      document.getElementById('texture-preview').src = this.envMap.image[0].src;
+
       if (window.scene){
         window.scene.children.forEach(mesh => {
           mesh.material.envMap = this.envMap;
@@ -16,16 +17,16 @@ const TEXTURE = (() => {
       const loader = new THREE.CubeTextureLoader();
       loader.setPath( 'textures/' );
       this.envMap = loader.load(
-        [0,1,2,3,4,5].map(i => 'pabloCube.png')
+        [0,1,2,3,4,5].map(i => 'pabloCube.png'),
+        () => this.updateExisting()
       );
-      this.updateExisting();
     }
     loadUploadedImage(blob){
       const loader = new THREE.CubeTextureLoader();
       this.envMap = loader.load(
-        [0,1,2,3,4,5].map(i => blob)
+        [0,1,2,3,4,5].map(i => blob),
+        () => this.updateExisting()
       );
-      this.updateExisting();
     }
   }
   return new T();
