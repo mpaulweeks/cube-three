@@ -1,0 +1,122 @@
+
+html {
+  font-size: 18px;
+}
+body {
+  margin: 0;
+  --tab-height: 50px;
+  --blue: #91D2FA;
+}
+canvas {
+  width: 100%;
+  height: 100%;
+}
+button {
+  font-size: 1rem;
+  border: 1px solid white;
+  cursor: pointer;
+  color: white;
+  background-color: black;
+}
+button:hover {
+  color: black;
+  background-color: var(--blue);
+  cursor: pointer;
+}
+
+#tab-container {
+  position: fixed;
+  width: var(--tab-height);
+  height: var(--tab-height);
+  top: 0px;
+  right: 0px;
+  /*border: 1px solid pink;*/
+}
+
+#tab {
+  cursor: pointer;
+
+  position: fixed;
+  height: var(--tab-height);
+  line-height: var(--tab-height);
+  padding: 0px 20px;
+  top: calc(0px - var(--tab-height));
+  right: 0px;
+
+  color: white;
+  background-color: #202020;
+  border: 2px solid white;
+  border-radius: 0px 0px 0px 10px;
+  border-top-width: 0px;
+  border-right-width: 0px;
+  box-sizing: border-box;
+
+  transition-property: top;
+  transition-delay: 0.5s;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+
+  animation-name: peek;
+  animation-delay: 0s;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+}
+
+#tab-container:hover #tab {
+  top: 0px;
+  transition-delay: 0s;
+}
+
+@keyframes peek {
+  0% {
+    top: 0px;
+  }
+  80% {
+    top: 0px;
+  }
+  100% {
+    top: calc(0px - var(--tab-height));
+  }
+}
+
+#modal {
+  position: fixed;
+  width: 90%;
+  height: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  font-size: 1rem;
+  color: white;
+  background-color: rgba(128, 128, 128, 0.2);
+
+  border: 2px solid white;
+  border-radius: 20px;
+  box-sizing: content-box;
+
+  transition-property: top;
+  transition-delay: 0s;
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+#modal.hidden {
+  top: -100%;
+}
+#modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+#modal-body > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#social a {
+  color: var(--blue);
+}
