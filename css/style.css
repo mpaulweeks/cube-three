@@ -117,6 +117,17 @@ button:hover {
   align-items: center;
 }
 
+#upload-button.hidden,
+#upload-confirm.hidden {
+  display: none;
+}
+
+.croppie-container {
+  /*override*/
+  width: auto;
+  height: auto;
+}
+
 #social a {
   color: var(--blue);
 }

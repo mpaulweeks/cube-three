@@ -4,9 +4,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cubism</title>
 
-  <link rel="stylesheet" href="css/style.css" />
-
+  <!-- third party -->
+  <link rel="stylesheet" href="css/croppie.css" />
+  <script defer src="js/croppie.js"></script>
   <script defer src="js/three.js"></script>
+
+  <link rel="stylesheet" href="css/style.css" />
   <script defer src="js/color.js"></script>
   <script defer src="js/settings.js"></script>
   <script defer src="js/motion.js"></script>
@@ -32,7 +35,13 @@
         </p>
 
         <p>
-          <button id="upload-image-button">upload custom image</button>
+          <button id="upload-button">upload custom image</button>
+          <button id="upload-confirm" class="hidden">confirm custom image</button>
+          <input id="upload-input" type="file" style="display: none;" />
+        </p>
+
+        <p>
+          <img id="upload-preview" />
         </p>
       </div>
 

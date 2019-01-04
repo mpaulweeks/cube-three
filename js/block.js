@@ -4,7 +4,7 @@ function range(delta){
 
 const loader = new THREE.CubeTextureLoader();
 loader.setPath( 'textures/' );
-const textureCube = loader.load(
+let textureCube = loader.load(
   [0,1,2,3,4,5].map(i => 'pabloCube.png')
 );
 
