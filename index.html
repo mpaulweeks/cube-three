@@ -143,7 +143,13 @@
       }
       MOUSE_DOWN = undefined;
     }
-    setupMotionListeners(onDocumentMouseMove, onDocumentMouseDown, onDocumentMouseUp);
+    function onContextMenu(event) {
+      if (INTERSECTED){
+        scene.remove(INTERSECTED);
+        INTERSECTED = undefined;
+      }
+    }
+    setupMotionListeners(onDocumentMouseMove, onDocumentMouseDown, onDocumentMouseUp, onContextMenu);
 
     // start
     animate();

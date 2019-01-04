@@ -4,7 +4,12 @@ function addMouseEvent(elm, eventType, callback){
     if (eventType.startsWith('touch')){
       evt = evt.touches[0];
     }
-    callback(evt);
+    if (evt.which === 3) {
+      // Right Mouse
+      // do nothing
+    } else {
+      callback(evt);
+    }
   }, {passive: true});
 }
 
@@ -15,22 +20,23 @@ function mobileAndTabletCheck() {
   return check;
 }
 
-function setupMotionListeners(onMove, onDown, onUp){
+function setupMotionListeners(onMove, onDown, onUp, onContextMenu){
   const canvas = document.getElementsByTagName('canvas')[0];
+  const isMobile = mobileAndTabletCheck();
 
-  addMouseEvent(canvas, 'mousemove', md => onMove(md));
-  addMouseEvent(canvas, 'touchmove', md => onMove(md));
-  addMouseEvent(canvas, 'mousedown', md => onDown(md));
-  addMouseEvent(canvas, 'touchstart', md => onDown(md));
-  addMouseEvent(canvas, 'mouseup', md => onUp(md));
-  addMouseEvent(canvas, 'touchend', md => onUp(md));
+  addMouseEvent(canvas, 'mousemove', event => onMove(event));
+  addMouseEvent(canvas, 'touchmove', event => onMove(event));
+  addMouseEvent(canvas, 'mousedown', event => onDown(event));
+  addMouseEvent(canvas, 'touchstart', event => onDown(event));
+  addMouseEvent(canvas, 'mouseup', event => onUp(event));
+  addMouseEvent(canvas, 'touchend', event => onUp(event));
 
-  if (mobileAndTabletCheck()){
-    // prevent right click on canvas, which overlaps with drag/hold
-    canvas.oncontextmenu = event => {
-      event.preventDefault && event.preventDefault();
-      event.stopPropagation && event.stopPropagation();
-      return false;
-    };
-  }
+  canvas.addEventListener('contextmenu', event => {
+    if (!isMobile){
+      onContextMenu(event);
+    }
+    event.preventDefault && event.preventDefault();
+    event.stopPropagation && event.stopPropagation();
+    return false;
+  });
 }
