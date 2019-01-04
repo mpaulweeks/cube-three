@@ -19,6 +19,7 @@
 
   <link rel="stylesheet" href="css/style.css" />
   <script defer src="js/texture.js"></script>
+  <script defer src="js/cubeSettings.js"></script>
   <script defer src="js/color.js"></script>
   <script defer src="js/settings.js"></script>
   <script defer src="js/motion.js"></script>
@@ -36,59 +37,94 @@
   <div id="modal" class="hidden">
     <div id="modal-customize" class="modal-body">
       <div>
-        <p>
+        <div class="row">
           click and drag to make cubes
           <br/>
           right click to delete the highlighted cube
-        </p>
+        </div>
+      </div>
+
+      <div class="row columns">
+        <div>
+          <div class="row header">
+            set cube size
+          </div>
+          <div class="row">
+            <label>
+              width
+              <input id="settings-x" type="text" />
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              height
+              <input id="settings-y" type="text" />
+            </label>
+          </div>
+          <div class="row">
+            <label>
+              depth
+              <input id="settings-z" type="text" />
+            </label>
+          </div>
+        </div>
+        <div>
+          <div class="row">
+            <img id="texture-preview" />
+          </div>
+          <div class="row">
+            <button id="upload-button">upload custom image</button>
+          </div>
+        </div>
+        <div>
+          <div class="row header">
+            set cube color
+          </div>
+          <div class="row">
+            coming soon
+          </div>
+        </div>
       </div>
 
       <div>
-        <p>
-          <img id="texture-preview" />
-        </p>
-        <p>
-          <button id="upload-button">upload custom image</button>
-        </p>
-      </div>
-
-      <div>
-        <p>
+        <div class="row">
           <button id="modal-close">close</button>
-        </p>
+        </div>
 
-        <p id="social">
+        <div class="row" id="social">
           made by
           <a href="https://twitter.com/mpaulweeks">@mpaulweeks</a>
-        </p>
+        </div>
       </div>
     </div>
     <div id="modal-upload" class="modal-body hidden">
       <div>
-        <p>
+        <div class="row">
           customize your image
           <br/>
           it must fit in a square
-        </p>
+        </div>
       </div>
 
       <div>
-        <p>
+        <div class="row">
           <img id="upload-preview" />
-        </p>
-        <p>
-          <button id="upload-confirm">confirm custom image</button>
-          <input id="upload-input" type="file" style="display: none;" />
-        </p>
+        </div>
       </div>
 
       <div>
-        <p>
+        <div class="row">
+          <button id="upload-confirm">confirm custom image</button>
+        </div>
+        <div class="row">
           <button id="modal-upload-cancel">cancel</button>
-        </p>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- always hidden -->
+  <input id="upload-input" type="file" style="display: none;" />
 
   <!-- canvas created via three.js -->
 </body>

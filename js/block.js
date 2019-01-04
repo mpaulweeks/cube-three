@@ -5,8 +5,11 @@ function range(delta){
 class Block {
   constructor(scene, position, tickOffset, settings) {
     this.scene = scene;
-    const cubeSide = 1;
-    const geometry = new THREE.BoxBufferGeometry(cubeSide, cubeSide, cubeSide);
+    const geometry = new THREE.BoxBufferGeometry(
+      CubeSettings.sizeX,
+      CubeSettings.sizeY,
+      CubeSettings.sizeZ
+    );
 
     this.material = new THREE.MeshBasicMaterial({
       color: 0xffffff,

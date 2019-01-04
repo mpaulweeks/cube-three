@@ -49,16 +49,17 @@
   }, false);
   elmUploadPreview.onload = () => {
     openUploadMenu();
+    const side = (windowHeight - 100) * 0.4; // to match CSS
     cropSession = new Croppie(elmUploadPreview, {
       enableExif: true,
       viewport: {
-        width: 200,
-        height: 200,
+        width: side,
+        height: side,
         type: 'square'
       },
       boundary: {
-        width: 300,
-        height: 300,
+        width: side * 1.2,
+        height: side * 1.2,
       },
     });
     window.cropSession = cropSession;
