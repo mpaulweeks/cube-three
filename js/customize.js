@@ -52,11 +52,12 @@
     elmUploadConfirm.classList.add('hidden');
 
     // todo figure this step out
-    cropSession.result().then(function(blob) {
-      console.log(blob);
-      textureCube = loader.load(
-        [0,1,2,3,4,5].map(i => blob)
-      );
+    cropSession.result({
+      format: 'jpeg',
+      quality: 1,
+    }).then(function(blob) {
+      // set global textureCube
+      TEXTURE.loadUploadedImage(blob);
     });
   })
 

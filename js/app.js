@@ -130,5 +130,8 @@ function onContextMenu(event) {
 }
 setupMotionListeners(onDocumentMouseMove, onDocumentMouseDown, onDocumentMouseUp, onContextMenu);
 
+// global objects
+window.scene = scene;
+
 // start
 animate();

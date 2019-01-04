@@ -2,12 +2,6 @@ function range(delta){
   return (Math.random() * 2 * delta) - delta;
 }
 
-const loader = new THREE.CubeTextureLoader();
-loader.setPath( 'textures/' );
-let textureCube = loader.load(
-  [0,1,2,3,4,5].map(i => 'pabloCube.png')
-);
-
 class Block {
   constructor(scene, position, tickOffset, settings) {
     this.scene = scene;
@@ -16,7 +10,7 @@ class Block {
 
     this.material = new THREE.MeshBasicMaterial({
       color: 0xffffff,
-      envMap: textureCube,
+      envMap: TEXTURE.envMap,
       polygonOffset: true,
       polygonOffsetFactor: 1, // positive value pushes polygon further away
       polygonOffsetUnits: 1,
