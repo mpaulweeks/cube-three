@@ -5,28 +5,29 @@ const CubeSettings = (() => {
       const self = this;
       this.settings = [
         {
-          default: 1.0,
+          draft: "1.0",
+          isNum: true,
           attr: 'sizeX',
           id: 'settings-x',
         },
         {
-          default: 1.0,
+          draft: "1.0",
+          isNum: true,
           attr: 'sizeY',
           id: 'settings-y',
         },
         {
-          default: 1.0,
+          draft: "1.0",
+          isNum: true,
           attr: 'sizeZ',
           id: 'settings-z',
         },
       ].map(s => {
-        self[s.attr] = s.default;
-        s.draft = s.default;
         s.elm = document.getElementById(s.id);
         s.elm.addEventListener('input', evt => {
-          let newValue = s.elm.value;
-          self.setAttr(s.attr, newValue);
-        })
+          let newDraft = s.elm.value;
+          self.setAttr(s.attr, newDraft);
+        });
         return s;
       });
 
@@ -37,7 +38,7 @@ const CubeSettings = (() => {
       const self = this;
       this.settings.forEach(s => {
         let newValue = s.draft;
-        if (!isNaN(s.default)){
+        if (s.isNum){
           newValue = parseFloat(newValue);
         }
         if (newValue) {
@@ -55,10 +56,10 @@ const CubeSettings = (() => {
         });
       }
     }
-    setAttr(attr, newValue) {
+    setAttr(attr, newDraft) {
       this.settings.forEach(s => {
         if (s.attr === attr){
-          s.draft = newValue;
+          s.draft = newDraft;
         }
       });
       this.updateExisting();
