@@ -41,6 +41,7 @@ input {
 }
 
 #tab-container {
+  z-index: 1;
   position: fixed;
   width: var(--tab-height);
   height: var(--tab-height);
@@ -96,21 +97,12 @@ input {
 }
 
 #modal {
+  z-index: 2;
   position: fixed;
-  width: calc(100% - 50px);
-  height: calc(100% - 50px);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  text-align: center;
-  font-size: 1rem;
-  color: white;
-  background-color: rgba(128, 128, 128, 0.2);
-
-  border: 2px solid white;
-  border-radius: 1rem;
-  box-sizing: content-box;
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  left: 0%;
 
   transition-property: top;
   transition-delay: 0s;
@@ -118,7 +110,7 @@ input {
   transition-timing-function: ease-in-out;
 }
 #modal.hidden {
-  top: -100%;
+  top: -150%;
 }
 #modal div.hidden {
   display: none;
@@ -128,7 +120,17 @@ input {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: calc(100% - 50px);
+  margin: 25px;
+
+  text-align: center;
+  font-size: 1rem;
+  color: white;
+  background-color: rgba(128, 128, 128, 0.2);
+
+  border: 2px solid white;
+  border-radius: 1rem;
+  box-sizing: content-box;
 }
 
 div.row {

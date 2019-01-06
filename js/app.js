@@ -132,6 +132,7 @@ setupMotionListeners(onDocumentMouseMove, onDocumentMouseDown, onDocumentMouseUp
 
 // global objects
 window.scene = scene;
+window.SCENE = scene;
 
 // start
 animate();
