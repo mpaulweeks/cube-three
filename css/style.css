@@ -6,6 +6,11 @@ body {
   margin: 0;
   --tab-height: 50px;
   --blue: #91D2FA;
+  --foreground: white;
+  --background-tab: #202020;
+  --background-modal: rgba(128, 128, 128, 0.2);
+
+  color: var(--foreground);
 }
 canvas {
   width: 100%;
@@ -14,13 +19,14 @@ canvas {
 button {
   font-size: 1rem;
   padding: 0.5rem;
-  border: 1px solid white;
+  border: 1px solid var(--foreground);
   border-radius: 0.3rem;
   cursor: pointer;
-  color: white;
+  color: var(--foreground);
   background-color: black;
 }
-button:hover {
+button:hover,
+#modal-exit:hover {
   color: black;
   background-color: var(--blue);
   cursor: pointer;
@@ -60,9 +66,9 @@ input {
   top: calc(0px - var(--tab-height));
   right: 0px;
 
-  color: white;
-  background-color: #202020;
-  border: 2px solid white;
+  color: var(--foreground);
+  background-color: var(--background-tab);
+  border: 2px solid var(--foreground);
   border-radius: 0px 0px 0px 10px;
   border-top-width: 0px;
   border-right-width: 0px;
@@ -115,22 +121,41 @@ input {
 #modal div.hidden {
   display: none;
 }
-.modal-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+#modal-frame {
+  position: relative;
   height: calc(100% - 50px);
   margin: 25px;
 
   text-align: center;
   font-size: 1rem;
-  color: white;
-  background-color: rgba(128, 128, 128, 0.2);
+  background-color: var(--background-modal);
 
-  border: 2px solid white;
-  border-radius: 1rem;
+  border: 2px solid var(--foreground);
+  border-radius: 1rem 0rem 1rem 1rem;
   box-sizing: content-box;
+}
+#modal-exit {
+  position: absolute;
+  top: -2px;
+  right: -2px;
+
+  width: 2rem;
+  height: 2rem;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--background-modal);
+  border: 2px solid var(--foreground);
+}
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 div.row {
@@ -151,7 +176,7 @@ div.columns > div {
   height: 40%;
   width: auto;
   padding: 10%;
-  border: 1px solid white;
+  border: 1px solid var(--foreground);
   border-radius: 0.5rem;
   background-color: rgba(128, 128, 128, 0.4);
 }

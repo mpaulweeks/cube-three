@@ -10,7 +10,7 @@
   const elmUploadInput = document.getElementById('upload-input');
   const elmUploadPreview = document.getElementById('upload-preview');
   const elmUploadConfirm = document.getElementById('upload-confirm');
-  const elmModalCustomizeClose = document.getElementById('modal-close');
+  const elmModalCustomizeClose = document.getElementById('modal-exit');
   const elmModalUploadCancel = document.getElementById('modal-upload-cancel');
   let cropSession = undefined;
 

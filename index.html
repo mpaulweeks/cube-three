@@ -36,88 +36,87 @@
 
   <!-- modal for customizing -->
   <div id="modal" class="hidden">
-    <div id="modal-customize" class="modal-body">
-      <div>
-        <div class="row">
-          click and drag to make cubes
-          <br/>
-          right click to delete the highlighted cube
-        </div>
-      </div>
-
-      <div class="row columns">
+    <div id="modal-frame">
+      <div id="modal-customize" class="modal-body">
         <div>
-          <div class="row header">
-            set cube size
-          </div>
           <div class="row">
-            <label> width </label>
-            <input id="settings-x" type="text" />
-          </div>
-          <div class="row">
-            <label> height </label>
-            <input id="settings-y" type="text" />
-          </div>
-          <div class="row">
-            <label> depth </label>
-            <input id="settings-z" type="text" />
+            click and drag to make cubes
+            <br/>
+            right click to delete the highlighted cube
           </div>
         </div>
+
+        <div class="row columns">
+          <div>
+            <div class="row header">
+              set cube size
+            </div>
+            <div class="row">
+              <label> width </label>
+              <input id="settings-x" type="text" />
+            </div>
+            <div class="row">
+              <label> height </label>
+              <input id="settings-y" type="text" />
+            </div>
+            <div class="row">
+              <label> depth </label>
+              <input id="settings-z" type="text" />
+            </div>
+          </div>
+          <div>
+            <div class="row header">
+              change the image
+            </div>
+            <div class="row">
+              <img id="texture-preview" />
+            </div>
+            <div class="row">
+              <button id="upload-button">upload custom image</button>
+            </div>
+          </div>
+          <div>
+            <div class="row header">
+              actions
+            </div>
+            <div class="row">
+              <button id="clear-button">clear all current cubes</button>
+            </div>
+          </div>
+        </div>
+
         <div>
-          <div class="row header">
-            change the image
-          </div>
-          <div class="row">
-            <img id="texture-preview" />
-          </div>
-          <div class="row">
-            <button id="upload-button">upload custom image</button>
+          <div class="row" id="social">
+            made by
+            <a href="https://twitter.com/mpaulweeks">@mpaulweeks</a>
           </div>
         </div>
+      </div>
+      <div id="modal-upload" class="modal-body hidden">
         <div>
-          <div class="row header">
-            actions
+          <div class="row">
+            customize your image
+            <br/>
+            it must fit in a square
+          </div>
+        </div>
+
+        <div>
+          <div class="row">
+            <img id="upload-preview" />
+          </div>
+        </div>
+
+        <div>
+          <div class="row">
+            <button id="upload-confirm">confirm custom image</button>
           </div>
           <div class="row">
-            <button id="clear-button">clear all current cubes</button>
+            <button id="modal-upload-cancel">cancel</button>
           </div>
         </div>
       </div>
-
-      <div>
-        <div class="row">
-          <button id="modal-close">close</button>
-        </div>
-
-        <div class="row" id="social">
-          made by
-          <a href="https://twitter.com/mpaulweeks">@mpaulweeks</a>
-        </div>
-      </div>
-    </div>
-    <div id="modal-upload" class="modal-body hidden">
-      <div>
-        <div class="row">
-          customize your image
-          <br/>
-          it must fit in a square
-        </div>
-      </div>
-
-      <div>
-        <div class="row">
-          <img id="upload-preview" />
-        </div>
-      </div>
-
-      <div>
-        <div class="row">
-          <button id="upload-confirm">confirm custom image</button>
-        </div>
-        <div class="row">
-          <button id="modal-upload-cancel">cancel</button>
-        </div>
-      </div>
+      <div id="modal-exit"> X </div>
     </div>
   </div>
 
