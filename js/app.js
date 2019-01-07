@@ -22,6 +22,8 @@ const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
 let INTERSECTED = undefined;
 let MOUSE_DOWN = undefined;
+let mobilePresetIndex = 0;
+let checkForHoldTimeout = undefined;
 
 let tick = 0;
 function step(){
@@ -81,6 +83,22 @@ function convertMouseToSpace(){
   }
 }
 
+function checkForHold() {
+  if (checkForHoldTimeout){
+    clearTimeout(checkForHoldTimeout);
+  }
+  checkForHoldTimeout = setTimeout(() => {
+    if (MOUSE_DOWN && !MOUSE_DOWN.isDrag){
+      // definitely held in place
+      if (isMobile) {
+        PRESETS[mobilePresetIndex].load();
+        mobilePresetIndex = (mobilePresetIndex + 1) % PRESETS.length;
+        MOUSE_DOWN = undefined;
+      }
+    }
+  }, 1000);
+}
+
 let moveTick = 0;
 function onDocumentMouseMove(event) {
   updateMouse(event);
@@ -99,10 +117,11 @@ function onDocumentMouseDown(event) {
   MOUSE_DOWN = {
     isDrag: false,
   };
+  checkForHold();
 }
 function onDocumentMouseUp(event) {
   if (MOUSE_DOWN){
-    const { isDrag } = MOUSE_DOWN;
+    const { isDrag, startLocation } = MOUSE_DOWN;
     if (!isDrag){
       const newBlock = Block.spawnAt(
         convertMouseToSpace(),
@@ -135,11 +154,7 @@ SCENE.removeAll = () => {
   });
 };
 setupMotionListeners(onDocumentMouseMove, onDocumentMouseDown, onDocumentMouseUp, onContextMenu);
-Block.original(scene);
-// for (let i = 0; i < 1000; i++){
-  // const last = scene.children[scene.children.length - 1].block;
-  // last.clone();
-// };
+Block.original();
 
 // start
 animate();

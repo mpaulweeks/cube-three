@@ -2,7 +2,7 @@
 function addMouseEvent(elm, eventType, callback){
   elm.addEventListener(eventType, evt => {
     if (eventType.startsWith('touch')){
-      evt = evt.touches[0];
+      evt = evt.touches.length ? evt.touches[0] : evt.changedTouches[0];
     }
     if (evt.which === 3) {
       // Right Mouse
@@ -23,12 +23,15 @@ function mobileAndTabletCheck() {
 function setupMotionListeners(onMove, onDown, onUp, onContextMenu){
   const isMobile = mobileAndTabletCheck();
 
-  addMouseEvent(CANVAS, 'mousemove', event => onMove(event));
-  addMouseEvent(CANVAS, 'touchmove', event => onMove(event));
-  addMouseEvent(CANVAS, 'mousedown', event => onDown(event));
-  addMouseEvent(CANVAS, 'touchstart', event => onDown(event));
-  addMouseEvent(CANVAS, 'mouseup', event => onUp(event));
-  addMouseEvent(CANVAS, 'touchend', event => onUp(event));
+  if (isMobile){
+    addMouseEvent(CANVAS, 'touchmove', event => onMove(event));
+    addMouseEvent(CANVAS, 'touchstart', event => onDown(event));
+    addMouseEvent(CANVAS, 'touchend', event => onUp(event));
+  } else {
+    addMouseEvent(CANVAS, 'mousemove', event => onMove(event));
+    addMouseEvent(CANVAS, 'mousedown', event => onDown(event));
+    addMouseEvent(CANVAS, 'mouseup', event => onUp(event));
+  }
 
   CANVAS.addEventListener('contextmenu', event => {
     if (!isMobile){

@@ -190,3 +190,10 @@ div.columns > div {
 #social a {
   color: var(--blue);
 }
+
+@media (max-width: 400px){
+  #tab-container,
+  #modal {
+    display: none;
+  }
+}
