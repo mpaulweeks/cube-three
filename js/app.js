@@ -128,11 +128,14 @@ function onContextMenu(event) {
     INTERSECTED = undefined;
   }
 }
-setupMotionListeners(onDocumentMouseMove, onDocumentMouseDown, onDocumentMouseUp, onContextMenu);
 
 // global objects
 window.scene = scene;
 window.SCENE = scene;
+window.CANVAS = document.getElementsByTagName('canvas')[0];
+
+// setup
+setupMotionListeners(onDocumentMouseMove, onDocumentMouseDown, onDocumentMouseUp, onContextMenu);
 
 // start
 animate();

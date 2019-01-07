@@ -21,17 +21,16 @@ function mobileAndTabletCheck() {
 }
 
 function setupMotionListeners(onMove, onDown, onUp, onContextMenu){
-  const canvas = document.getElementsByTagName('canvas')[0];
   const isMobile = mobileAndTabletCheck();
 
-  addMouseEvent(canvas, 'mousemove', event => onMove(event));
-  addMouseEvent(canvas, 'touchmove', event => onMove(event));
-  addMouseEvent(canvas, 'mousedown', event => onDown(event));
-  addMouseEvent(canvas, 'touchstart', event => onDown(event));
-  addMouseEvent(canvas, 'mouseup', event => onUp(event));
-  addMouseEvent(canvas, 'touchend', event => onUp(event));
+  addMouseEvent(CANVAS, 'mousemove', event => onMove(event));
+  addMouseEvent(CANVAS, 'touchmove', event => onMove(event));
+  addMouseEvent(CANVAS, 'mousedown', event => onDown(event));
+  addMouseEvent(CANVAS, 'touchstart', event => onDown(event));
+  addMouseEvent(CANVAS, 'mouseup', event => onUp(event));
+  addMouseEvent(CANVAS, 'touchend', event => onUp(event));
 
-  canvas.addEventListener('contextmenu', event => {
+  CANVAS.addEventListener('contextmenu', event => {
     if (!isMobile){
       onContextMenu(event);
     }

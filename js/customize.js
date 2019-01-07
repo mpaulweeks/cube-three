@@ -10,8 +10,10 @@
   const elmUploadInput = document.getElementById('upload-input');
   const elmUploadPreview = document.getElementById('upload-preview');
   const elmUploadConfirm = document.getElementById('upload-confirm');
+  const elmFullScreen = document.getElementById('fullscreen');
   const elmModalCustomizeClose = document.getElementById('modal-exit');
   const elmModalUploadCancel = document.getElementById('modal-upload-cancel');
+  let isFullScreen = false;
   let cropSession = undefined;
 
   // helpers sub-menu for upload
@@ -29,9 +31,13 @@
   // open/close modal
   elmTab.addEventListener('click', evt => {
     elmModalContainer.classList.remove('hidden');
+    elmTab.classList.remove('always-show');
   });
   elmModalCustomizeClose.addEventListener('click', evt => {
     elmModalContainer.classList.add('hidden');
+    if (!isFullScreen){
+      elmTab.classList.add('always-show');
+    }
   });
   elmModalUploadCancel.addEventListener('click', evt => {
     closeUploadMenu();
@@ -84,5 +90,28 @@
       closeUploadMenu();
     });
   });
+
+  // on fullscreen
+  elmFullScreen.addEventListener('click', () => {
+    const elm = document.body;
+    if(elm.requestFullScreen) {
+      elm.requestFullScreen();
+    } else if(elm.webkitRequestFullScreen) {
+      elm.webkitRequestFullScreen();
+    } else if(elm.mozRequestFullScreen) {
+      elm.mozRequestFullScreen();
+    }
+  });
+  function onFullScreen(){
+    if (document.fullscreenElement) {
+      isFullScreen = true;
+      elmTab.classList.remove('always-show');
+    } else {
+      elmTab.classList.add('always-show');
+    }
+  }
+  document.addEventListener('fullscreenchange', onFullScreen);
+  document.addEventListener('webkitfullscreenchange', onFullScreen);
+  document.addEventListener('mozfullscreenchange', onFullScreen);
 
 })();

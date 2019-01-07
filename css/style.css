@@ -4,7 +4,7 @@ html {
 }
 body {
   margin: 0;
-  --tab-height: 50px;
+  --tab-height: calc(5rem);
   --blue: #91D2FA;
   --foreground: white;
   --background-tab: #202020;
@@ -53,7 +53,7 @@ input {
   height: var(--tab-height);
   top: 0px;
   right: 0px;
-  /*border: 1px solid pink;*/
+  /*border: 10px solid pink;*/
 }
 
 #tab {
@@ -61,7 +61,6 @@ input {
 
   position: fixed;
   height: var(--tab-height);
-  line-height: var(--tab-height);
   padding: 0px 20px;
   top: calc(0px - var(--tab-height));
   right: 0px;
@@ -74,32 +73,21 @@ input {
   border-right-width: 0px;
   box-sizing: border-box;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
   transition-property: top;
-  transition-delay: 0.5s;
+  transition-delay: 0s;
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
-
-  animation-name: peek;
-  animation-delay: 0s;
-  animation-duration: 3s;
-  animation-timing-function: linear;
 }
 
-#tab-container:hover #tab {
+#tab-container:hover #tab,
+#tab.always-show {
   top: 0px;
-  transition-delay: 0s;
-}
-
-@keyframes peek {
-  0% {
-    top: 0px;
-  }
-  80% {
-    top: 0px;
-  }
-  100% {
-    top: calc(0px - var(--tab-height));
-  }
 }
 
 #modal {
