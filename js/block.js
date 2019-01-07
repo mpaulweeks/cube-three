@@ -1,9 +1,9 @@
-function range(delta){
+function plusOrMinus(delta){
   return (Math.random() * 2 * delta) - delta;
 }
 
 class Block {
-  constructor(position, tickOffset, settings) {
+  constructor(position, rotationOffset, tickOffset, settings) {
     const geometry = new THREE.BoxBufferGeometry(
       CubeSettings.sizeX,
       CubeSettings.sizeY,
@@ -35,6 +35,10 @@ class Block {
     // setup
     this.mesh.block = this;
     SCENE.add(this.mesh);
+
+    for(let i = 0; i < rotationOffset; i++){
+      this.rotate();
+    }
   }
   rotate() {
     this.mesh.rotation.x += 0.004;
@@ -55,6 +59,7 @@ class Block {
         z: 0,
       },
       0,
+      0,
       {
         colorFreq: 0,
         phaseDelta: 0,
@@ -63,13 +68,14 @@ class Block {
       }
     );
   }
-  static spawnAt(coord, tickOffset) {
+  static spawnAt(coord, rotationOffset, tickOffset) {
     return new Block(
       {
         x: coord.x,
         y: coord.y,
         z: 0,
       },
+      rotationOffset,
       tickOffset,
       {
         colorFreq: 0,
@@ -83,12 +89,13 @@ class Block {
     const positionSpread = 1;
     return new Block (
       {
-        x: this.mesh.position.x + range(positionSpread),
-        y: this.mesh.position.y + range(positionSpread),
-        z: this.mesh.position.z + range(positionSpread / 10),
+        x: this.mesh.position.x + plusOrMinus(positionSpread),
+        y: this.mesh.position.y + plusOrMinus(positionSpread),
+        z: this.mesh.position.z + plusOrMinus(positionSpread / 10),
       },
+      0,
       this.tickOffset,
-      // this.tickOffset + range(10),
+      // this.tickOffset + plusOrMinus(10),
       mutate(this.settings)
     );
   }

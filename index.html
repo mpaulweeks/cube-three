@@ -25,6 +25,7 @@
   <script defer src="js/motion.js"></script>
   <script defer src="js/customize.js"></script>
   <script defer src="js/block.js"></script>
+  <script defer src="js/presets.js"></script>
   <script defer src="js/app.js"></script>
 </head>
 <body>
@@ -65,6 +66,15 @@
               <label> depth </label>
               <input id="settings-z" type="text" />
             </div>
+            <div class="row header">
+              misc actions
+            </div>
+            <div class="row">
+              <button id="fullscreen">go fullscreen*</button>
+            </div>
+            <div class="row">
+              * this will autohide the top-right corner tab
+            </div>
           </div>
           <div>
             <div class="row header">
@@ -77,18 +87,12 @@
               <button id="upload-button">upload custom image</button>
             </div>
           </div>
-          <div>
+          <div id="presets">
             <div class="row header">
-              actions
+              load presets
             </div>
             <div class="row">
-              <button id="fullscreen">go fullscreen</button>
-            </div>
-            <div class="row">
-              * this will autohide the top-right corner tab
-            </div>
-            <div class="row">
-              <button id="clear-button">clear all current cubes</button>
+              this will delete any existing cubes you've placed
             </div>
           </div>
         </div>

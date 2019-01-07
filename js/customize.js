@@ -4,7 +4,6 @@
   const elmTab = document.getElementById('tab');
   const elmModalContainer = document.getElementById('modal');
   const elmModalCustomize = document.getElementById('modal-customize');
-  const elmClearButton = document.getElementById('clear-button');
   const elmUploadButton = document.getElementById('upload-button');
   const elmModalUpload = document.getElementById('modal-upload');
   const elmUploadInput = document.getElementById('upload-input');
@@ -45,13 +44,6 @@
   elmModalUploadCancel.addEventListener('click', evt => {
     closeUploadMenu();
   });
-
-  // misc buttons
-  elmClearButton.addEventListener('click', evt => {
-    SCENE.children.concat().forEach(c => {
-      SCENE.remove(c);
-    });
-  })
 
   // upload listeners
   elmUploadButton.addEventListener('click', evt => {

@@ -126,6 +126,11 @@ window.SCENE = scene;
 window.CANVAS = document.getElementsByTagName('canvas')[0];
 
 // setup
+SCENE.removeAll = () => {
+  SCENE.children.concat().forEach(c => {
+    SCENE.remove(c);
+  });
+};
 setupMotionListeners(onDocumentMouseMove, onDocumentMouseDown, onDocumentMouseUp, onContextMenu);
 Block.original(scene);
 // for (let i = 0; i < 1000; i++){

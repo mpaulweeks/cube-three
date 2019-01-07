@@ -42,8 +42,14 @@ input {
   width: 3rem;
   text-align: center;
 }
-.header {
+.row.header {
+  margin-top: 2rem;
+  font-size: 1.2rem;
+  font-weight: bold;
   text-decoration: underline;
+}
+.row.header:first-child{
+  margin-top: 1rem;
 }
 
 #tab-container {
