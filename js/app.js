@@ -48,7 +48,8 @@ function animate() {
   }
 
   if (INTERSECTED) {
-    INTERSECTED.block.paintWhite();
+    // todo make an option?
+    // INTERSECTED.block.paintWhite();
   }
 
   renderer.render(scene, camera);
@@ -88,6 +89,7 @@ function onDocumentMouseMove(event) {
     moveTick += 0.1;
     Block.spawnAt(
       convertMouseToSpace(),
+      0,
       moveTick
     );
   }
@@ -104,6 +106,7 @@ function onDocumentMouseUp(event) {
     if (!isDrag){
       const newBlock = Block.spawnAt(
         convertMouseToSpace(),
+        0,
         moveTick
       );
       newBlock.clone();

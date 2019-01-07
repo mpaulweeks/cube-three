@@ -49,9 +49,9 @@ const PRESETS = [
       sizeZ: 1.0,
     },
     spawners: range(yRange).map((y, yi, yArr) => {
-      const yCoord = (y - yArr.length/2)/2;
-      return range(xRange).map((x, xi, xArr) => {
-        const xCoord = (x - xArr.length/2)/2;
+      const yCoord = (y - yArr.length/2);
+      return range(xRange * 2).map((x, xi, xArr) => {
+        const xCoord = (x - xArr.length/2);
         const offset = (y * xArr.length) + x;
         return new BlockSpawner(
           {
@@ -65,16 +65,39 @@ const PRESETS = [
     }).flat(),
   },
   {
-    name: 'tiny rainbow rows',
+    name: 'overlapping cubes',
+    settings: {
+      sizeX: 1.0,
+      sizeY: 1.0,
+      sizeZ: 1.0,
+    },
+    spawners: range(yRange).map((y, yi, yArr) => {
+      const yCoord = (y - yArr.length/2) / 2;
+      return range(xRange).map((x, xi, xArr) => {
+        const xCoord = (x - xArr.length/2) / 2;
+        const offset = (y * xArr.length) + x;
+        return new BlockSpawner(
+          {
+            x: xCoord,
+            y: yCoord,
+          },
+          offset,
+          offset,
+        );
+      });
+    }).flat(),
+  },
+  {
+    name: 'tiny cubes',
     settings: {
       sizeX: 0.3,
       sizeY: 0.3,
       sizeZ: 0.3,
     },
-    spawners: range(3*yRange).map((y, yi, yArr) => {
-      const yCoord = (y - yArr.length/2)/3;
-      return range(3*xRange).map((x, xi, xArr) => {
-        const xCoord = (x - xArr.length/2)/3;
+    spawners: range(yRange * 2).map((y, yi, yArr) => {
+      const yCoord = (y - yArr.length/2) / 3;
+      return range(xRange * 2).map((x, xi, xArr) => {
+        const xCoord = (x - xArr.length/2) / 3;
         const offset = (y * xArr.length) + x;
         return new BlockSpawner(
           {
@@ -82,6 +105,52 @@ const PRESETS = [
             y: yCoord,
           },
           0,
+          offset,
+        );
+      });
+    }).flat(),
+  },
+  {
+    name: 'dominos',
+    settings: {
+      sizeX: 0.5,
+      sizeY: 0.5,
+      sizeZ: 0.1,
+    },
+    spawners: range(yRange).map((y, yi, yArr) => {
+      const yCoord = (y - yArr.length/2);
+      return range(xRange * 2).map((x, xi, xArr) => {
+        const xCoord = (x - xArr.length/2) / 3;
+        const offset = (y * xArr.length) + x;
+        return new BlockSpawner(
+          {
+            x: xCoord,
+            y: yCoord,
+          },
+          offset,
+          0,
+        );
+      });
+    }).flat(),
+  },
+  {
+    name: 'pick-up sticks',
+    settings: {
+      sizeX: 2.0,
+      sizeY: 0.1,
+      sizeZ: 0.1,
+    },
+    spawners: range(yRange * 2).map((y, yi, yArr) => {
+      const yCoord = (y - yArr.length/2) / 3;
+      return range(xRange * 2).map((x, xi, xArr) => {
+        const xCoord = (x - xArr.length/2) / 3;
+        const offset = (y * xArr.length) + x;
+        return new BlockSpawner(
+          {
+            x: xCoord,
+            y: yCoord,
+          },
+          offset * (offset - 1),
           offset,
         );
       });

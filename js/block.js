@@ -36,14 +36,15 @@ class Block {
     this.mesh.block = this;
     SCENE.add(this.mesh);
 
-    for(let i = 0; i < rotationOffset; i++){
-      this.rotate();
-    }
+    this.rotateTimes(rotationOffset);
   }
   rotate() {
-    this.mesh.rotation.x += 0.004;
-    this.mesh.rotation.y += 0.004;
-    this.mesh.rotation.z += 0.004;
+    this.rotateTimes(1);
+  }
+  rotateTimes(n) {
+    this.mesh.rotation.x += 0.004 * n;
+    this.mesh.rotation.y += 0.004 * n;
+    this.mesh.rotation.z += 0.004 * n;
   }
   paint(tick) {
     this.material.color = Rainbow.getColor(this.tickOffset + tick, this.settings);
