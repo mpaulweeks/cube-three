@@ -49,9 +49,9 @@ const PRESETS = [
       sizeZ: 1.0,
     },
     spawners: range(yRange).map((y, yi, yArr) => {
-      const yCoord = (y - yArr.length/2);
       return range(xRange * 2).map((x, xi, xArr) => {
         const xCoord = (x - xArr.length/2);
+        const yCoord = (y - yArr.length/2);
         const offset = (y * xArr.length) + x;
         return new BlockSpawner(
           {
@@ -72,9 +72,9 @@ const PRESETS = [
       sizeZ: 1.0,
     },
     spawners: range(yRange).map((y, yi, yArr) => {
-      const yCoord = (y - yArr.length/2) / 2;
       return range(xRange).map((x, xi, xArr) => {
         const xCoord = (x - xArr.length/2) / 2;
+        const yCoord = (y - yArr.length/2) / 2 + (x / xArr.length);
         const offset = (y * xArr.length) + x;
         return new BlockSpawner(
           {
@@ -95,9 +95,9 @@ const PRESETS = [
       sizeZ: 0.3,
     },
     spawners: range(yRange * 2).map((y, yi, yArr) => {
-      const yCoord = (y - yArr.length/2) / 3;
       return range(xRange * 2).map((x, xi, xArr) => {
         const xCoord = (x - xArr.length/2) / 3;
+        const yCoord = (y - yArr.length/2) / 3;
         const offset = (y * xArr.length) + x;
         return new BlockSpawner(
           {
@@ -118,9 +118,9 @@ const PRESETS = [
       sizeZ: 0.1,
     },
     spawners: range(yRange).map((y, yi, yArr) => {
-      const yCoord = (y - yArr.length/2);
       return range(xRange * 2).map((x, xi, xArr) => {
         const xCoord = (x - xArr.length/2) / 3;
+        const yCoord = (y - yArr.length/2);
         const offset = (y * xArr.length) + x;
         return new BlockSpawner(
           {
@@ -141,9 +141,9 @@ const PRESETS = [
       sizeZ: 0.1,
     },
     spawners: range(yRange * 2).map((y, yi, yArr) => {
-      const yCoord = (y - yArr.length/2) / 3;
       return range(xRange * 2).map((x, xi, xArr) => {
         const xCoord = (x - xArr.length/2) / 3;
+        const yCoord = (y - yArr.length/2) / 3;
         const offset = (y * xArr.length) + x;
         return new BlockSpawner(
           {
