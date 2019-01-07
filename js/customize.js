@@ -66,11 +66,12 @@
     openUploadMenu();
     const side = (windowHeight - 100) * 0.4; // to match CSS
     cropSession = new Croppie(elmUploadPreview, {
+      showZoomer: true,
       enableExif: true,
       viewport: {
+        type: 'square',
         width: side,
         height: side,
-        type: 'square'
       },
       boundary: {
         width: side * 1.2,
