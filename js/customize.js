@@ -13,6 +13,7 @@
   const elmFullScreen = document.getElementById('fullscreen');
   const elmModalCustomizeClose = document.getElementById('modal-exit');
   const elmModalUploadCancel = document.getElementById('modal-upload-cancel');
+  let isCustomizeOpen = false;
   let isFullScreen = false;
   let cropSession = undefined;
 
@@ -30,10 +31,12 @@
 
   // open/close modal
   elmTab.addEventListener('click', evt => {
+    isCustomizeOpen = true;
     elmModalContainer.classList.remove('hidden');
     elmTab.classList.remove('always-show');
   });
   elmModalCustomizeClose.addEventListener('click', evt => {
+    isCustomizeOpen = false;
     elmModalContainer.classList.add('hidden');
     if (!isFullScreen){
       elmTab.classList.add('always-show');
@@ -108,7 +111,10 @@
       isFullScreen = true;
       elmTab.classList.remove('always-show');
     } else {
-      elmTab.classList.add('always-show');
+      isFullScreen = false;
+      if (!isCustomizeOpen) {
+        elmTab.classList.add('always-show');
+      }
     }
   }
   document.addEventListener('fullscreenchange', onFullScreen);

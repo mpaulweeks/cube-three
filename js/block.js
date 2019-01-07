@@ -3,8 +3,7 @@ function range(delta){
 }
 
 class Block {
-  constructor(scene, position, tickOffset, settings) {
-    this.scene = scene;
+  constructor(position, tickOffset, settings) {
     const geometry = new THREE.BoxBufferGeometry(
       CubeSettings.sizeX,
       CubeSettings.sizeY,
@@ -35,7 +34,7 @@ class Block {
 
     // setup
     this.mesh.block = this;
-    this.scene.add(this.mesh);
+    SCENE.add(this.mesh);
   }
   rotate() {
     this.mesh.rotation.x += 0.004;
@@ -48,9 +47,8 @@ class Block {
   paintWhite() {
     this.material.color = {r: 1, g: 1, b: 1};
   }
-  static original(scene) {
+  static original() {
     return new Block(
-      scene,
       {
         x: 0,
         y: 0,
@@ -65,9 +63,8 @@ class Block {
       }
     );
   }
-  static spawnAt(scene, coord, tickOffset) {
+  static spawnAt(coord, tickOffset) {
     return new Block(
-      scene,
       {
         x: coord.x,
         y: coord.y,
@@ -85,7 +82,6 @@ class Block {
   clone() {
     const positionSpread = 1;
     return new Block (
-      this.scene,
       {
         x: this.mesh.position.x + range(positionSpread),
         y: this.mesh.position.y + range(positionSpread),

@@ -48,8 +48,8 @@ const CubeSettings = (() => {
         s.elm.value = s.draft;
         self[s.attr] = s.value;
       });
-      if (window.scene){
-        window.scene.children.forEach(mesh => {
+      if (window.SCENE){
+        window.SCENE.children.forEach(mesh => {
           mesh.scale.x = this.sizeX;
           mesh.scale.y = this.sizeY;
           mesh.scale.z = this.sizeZ;

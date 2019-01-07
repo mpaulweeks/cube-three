@@ -23,12 +23,6 @@ const mouse = new THREE.Vector2();
 let INTERSECTED = undefined;
 let MOUSE_DOWN = undefined;
 
-const block = Block.original(scene);
-for (let i = 0; i < 1000; i++){
-  const last = scene.children[scene.children.length - 1].block;
-  // last.clone();
-};
-
 let tick = 0;
 function step(){
   tick += 0.1;
@@ -93,7 +87,6 @@ function onDocumentMouseMove(event) {
     MOUSE_DOWN.isDrag = true;
     moveTick += 0.1;
     Block.spawnAt(
-      scene,
       convertMouseToSpace(),
       moveTick
     );
@@ -110,7 +103,6 @@ function onDocumentMouseUp(event) {
     const { isDrag } = MOUSE_DOWN;
     if (!isDrag){
       const newBlock = Block.spawnAt(
-        scene,
         convertMouseToSpace(),
         moveTick
       );
@@ -130,12 +122,16 @@ function onContextMenu(event) {
 }
 
 // global objects
-window.scene = scene;
 window.SCENE = scene;
 window.CANVAS = document.getElementsByTagName('canvas')[0];
 
 // setup
 setupMotionListeners(onDocumentMouseMove, onDocumentMouseDown, onDocumentMouseUp, onContextMenu);
+Block.original(scene);
+// for (let i = 0; i < 1000; i++){
+  // const last = scene.children[scene.children.length - 1].block;
+  // last.clone();
+// };
 
 // start
 animate();
