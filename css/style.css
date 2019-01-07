@@ -8,7 +8,7 @@ body {
   --blue: #91D2FA;
   --foreground: white;
   --background-tab: #202020;
-  --background-modal: rgba(128, 128, 128, 0.2);
+  --background-modal: rgba(50, 50, 50, 0.5);
   --background-button: black;
 
   color: var(--foreground);
@@ -43,10 +43,13 @@ input {
   width: 3rem;
   text-align: center;
 }
-.row.header {
-  margin-top: 2rem;
+.bold,
+.header {
   font-size: 1.2rem;
   font-weight: bold;
+}
+.row.header {
+  margin-top: 2rem;
   text-decoration: underline;
 }
 .row.header:first-child{
