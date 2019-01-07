@@ -49,8 +49,8 @@ input {
 #tab-container {
   z-index: 1;
   position: fixed;
-  width: var(--tab-height);
-  height: var(--tab-height);
+  width: calc(20px + 2 * var(--tab-height));
+  height: calc(20px + 1 * var(--tab-height));
   top: 0px;
   right: 0px;
   /*border: 10px solid pink;*/
