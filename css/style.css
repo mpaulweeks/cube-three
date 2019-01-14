@@ -4,7 +4,7 @@ html {
 }
 body {
   margin: 0;
-  --tab-height: calc(5rem);
+  --tab-height: calc(3rem);
   --blue: #91D2FA;
   --foreground: white;
   --background-tab: #202020;
@@ -202,9 +202,9 @@ div.columns > div {
 }
 
 #texture-preview {
-  height: 40%;
+  height: 40vh;
   width: auto;
-  padding: 10%;
+  padding: 5vh;
   border: 1px solid var(--foreground);
   border-radius: 0.5rem;
   background-color: rgba(128, 128, 128, 0.4);

@@ -31,9 +31,7 @@
 <body>
   <div id="tab-container">
     <div id="tab" class="always-show">
-      click here for
-      <br/>
-      options and info
+      customize
     </div>
   </div>
 
@@ -42,7 +40,10 @@
     <div class="modal-frame">
       <div id="modal-customize" class="modal-body">
         <div>
-          <div class="row bold">
+          <div class="row bold header">
+            cubism
+          </div>
+          <div class="row">
             click and drag to make cubes
             <br/>
             right click a cube to delete it
@@ -82,10 +83,23 @@
               <label> roll </label>
               <input id="settings-rotation-z" type="text" />
             </div>
-
-
+          </div>
+          <div id="presets">
+            <div class="row header">
+              load presets
+            </div>
+            <div class="row">
+              this will delete any existing cubes
+            </div>
+          </div>
+          <div>
             <div class="row header">
               misc actions
+            </div>
+
+            <!-- enter image submenu -->
+            <div class="row">
+              <button id="upload-button">upload custom image</button>
             </div>
 
             <!-- fullscreen toggle -->
@@ -103,25 +117,6 @@
               </div>
             </div>
           </div>
-          <div>
-            <div class="row header">
-              change the image
-            </div>
-            <div class="row">
-              <img id="texture-preview" />
-            </div>
-            <div class="row">
-              <button id="upload-button">upload custom image</button>
-            </div>
-          </div>
-          <div id="presets">
-            <div class="row header">
-              load presets
-            </div>
-            <div class="row">
-              this will delete any existing cubes
-            </div>
-          </div>
         </div>
 
         <div>
@@ -132,27 +127,32 @@
         </div>
       </div>
       <div id="modal-upload" class="modal-body hidden">
-        <div>
-          <div class="row">
-            customize your image
-            <br/>
-            it must fit in a square
+        <div class="row columns">
+          <div>
+            <div class="row header">
+              current image
+            </div>
+            <div class="row">
+              <img id="texture-preview" />
+            </div>
+          </div>
+          <div>
+            <div class="row header">
+              customize your image
+            </div>
+            <div class="row">
+              <img id="upload-preview" />
+            </div>
+            <div class="row">
+              it must fit in a square
+            </div>
+            <div class="row">
+              <button id="upload-confirm">confirm custom image</button>
+            </div>
           </div>
         </div>
-
-        <div>
-          <div class="row">
-            <img id="upload-preview" />
-          </div>
-        </div>
-
-        <div>
-          <div class="row">
-            <button id="upload-confirm">confirm custom image</button>
-          </div>
-          <div class="row">
-            <button id="modal-upload-cancel">cancel upload</button>
-          </div>
+        <div class="row">
+          <button id="modal-upload-cancel">cancel upload</button>
         </div>
       </div>
       <div id="modal-exit"> X </div>

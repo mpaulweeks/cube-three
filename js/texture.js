@@ -7,8 +7,8 @@ const TEXTURE = (() => {
     updateExisting(){
       document.getElementById('texture-preview').src = this.envMap.image[0].src;
 
-      if (window.scene){
-        window.scene.children.forEach(mesh => {
+      if (window.SCENE){
+        window.SCENE.children.forEach(mesh => {
           mesh.material.envMap = this.envMap;
         });
       }
