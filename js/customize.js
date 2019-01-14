@@ -15,6 +15,8 @@
   const elmFullScreenOffButton = document.getElementById('fullscreen-off-button');
   const elmModalCustomizeClose = document.getElementById('modal-exit');
   const elmModalUploadCancel = document.getElementById('modal-upload-cancel');
+  const elmModalMobileContainer = document.getElementById('modal-mobile');
+  const elmModalMobileClose = document.getElementById('modal-mobile-close');
   let isCustomizeOpen = false;
   let isFullScreen = false;
   let cropSession = undefined;
@@ -46,6 +48,9 @@
   });
   elmModalUploadCancel.addEventListener('click', evt => {
     closeUploadMenu();
+  });
+  elmModalMobileClose.addEventListener('click', evt => {
+    elmModalMobileContainer.classList.add('hidden');
   });
 
   // upload listeners
