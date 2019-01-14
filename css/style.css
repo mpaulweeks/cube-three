@@ -43,6 +43,23 @@ input {
   width: 4rem;
   text-align: center;
 }
+
+.row {
+  width: 100%;
+  margin: 1rem;
+}
+.columns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.column-child {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 30%;
+}
+
 .hidden {
   display: none;
 }
@@ -55,8 +72,12 @@ input {
   margin-top: 2rem;
   text-decoration: underline;
 }
-.row.header:first-child{
+.row.header:first-child {
   margin-top: 1rem;
+}
+.title {
+  font-size: 2rem;
+  margin-bottom: 0px;
 }
 
 #tab-container {
@@ -79,7 +100,6 @@ input {
   right: 0px;
 
   color: var(--foreground);
-  background-color: var(--background-tab);
   border: 2px solid var(--foreground);
   border-radius: 0px 0px 0px 10px;
   border-top-width: 0px;
@@ -96,6 +116,21 @@ input {
   transition-delay: 0s;
   transition-duration: 0.5s;
   transition-timing-function: ease-in-out;
+
+  animation-name: flash;
+  animation-delay: 0s;
+  animation-duration: 1.5s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+@keyframes flash {
+  from {
+    background-color: rgb(0, 0, 0);
+  }
+  to {
+    background-color: rgb(120, 120, 120);
+  }
 }
 
 #tab-container:hover #tab,
@@ -159,6 +194,10 @@ input {
   border-radius: 1rem;
 }
 
+#modal-upload.modal-body {
+  justify-content: space-between;
+}
+
 #modal-exit {
   position: absolute;
   top: -2px;
@@ -179,26 +218,12 @@ input {
 .modal-body {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   height: 100%;
 }
 #modal-mobile .modal-body {
   justify-content: space-around;
-}
-
-div.row {
-  width: 100%;
-  margin: 1rem;
-}
-div.columns {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-start;
-}
-div.columns > div {
-  width: 30%;
 }
 
 #texture-preview {
@@ -221,8 +246,13 @@ div.columns > div {
   height: auto;
 }
 
+#social {
+  font-size: 0.8rem;
+  margin-top: 0px;
+}
 #social a {
   color: var(--blue);
+  text-decoration: underline;
 }
 
 @media (max-width: 400px){

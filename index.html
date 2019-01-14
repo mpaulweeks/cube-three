@@ -40,8 +40,12 @@
     <div class="modal-frame">
       <div id="modal-customize" class="modal-body">
         <div>
-          <div class="row bold header">
+          <div class="row title bold header">
             cubism
+          </div>
+          <div class="row" id="social">
+            made by
+            <a href="https://twitter.com/mpaulweeks">@mpaulweeks</a>
           </div>
           <div class="row">
             click and drag to make cubes
@@ -51,7 +55,7 @@
         </div>
 
         <div class="row columns">
-          <div>
+          <div class="column-child">
             <div class="row header">
               set cube size
             </div>
@@ -84,7 +88,7 @@
               <input id="settings-rotation-z" type="text" />
             </div>
           </div>
-          <div id="presets">
+          <div class="column-child" id="presets">
             <div class="row header">
               load presets
             </div>
@@ -92,7 +96,7 @@
               this will delete any existing cubes
             </div>
           </div>
-          <div>
+          <div class="column-child">
             <div class="row header">
               misc actions
             </div>
@@ -108,7 +112,7 @@
                 <button id="fullscreen-on-button">enter fullscreen</button>
               </div>
               <div class="row">
-                this will autohide the top-right corner tab
+                fullscreen will autohide the customize tab
               </div>
             </div>
             <div id="fullscreen-off" class="hidden">
@@ -118,17 +122,10 @@
             </div>
           </div>
         </div>
-
-        <div>
-          <div class="row" id="social">
-            made by
-            <a href="https://twitter.com/mpaulweeks">@mpaulweeks</a>
-          </div>
-        </div>
       </div>
       <div id="modal-upload" class="modal-body hidden">
         <div class="row columns">
-          <div>
+          <div class="column-child">
             <div class="row header">
               current image
             </div>
@@ -136,7 +133,7 @@
               <img id="texture-preview" />
             </div>
           </div>
-          <div>
+          <div class="column-child">
             <div class="row header">
               customize your image
             </div>
