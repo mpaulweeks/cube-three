@@ -43,6 +43,9 @@ input {
   width: 3rem;
   text-align: center;
 }
+.hidden {
+  display: none;
+}
 .bold,
 .header {
   font-size: 1.2rem;

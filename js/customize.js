@@ -9,7 +9,10 @@
   const elmUploadInput = document.getElementById('upload-input');
   const elmUploadPreview = document.getElementById('upload-preview');
   const elmUploadConfirm = document.getElementById('upload-confirm');
-  const elmFullScreen = document.getElementById('fullscreen');
+  const elmFullScreenOn = document.getElementById('fullscreen-on');
+  const elmFullScreenOff = document.getElementById('fullscreen-off');
+  const elmFullScreenOnButton = document.getElementById('fullscreen-on-button');
+  const elmFullScreenOffButton = document.getElementById('fullscreen-off-button');
   const elmModalCustomizeClose = document.getElementById('modal-exit');
   const elmModalUploadCancel = document.getElementById('modal-upload-cancel');
   let isCustomizeOpen = false;
@@ -88,22 +91,39 @@
   });
 
   // on fullscreen
-  elmFullScreen.addEventListener('click', () => {
-    const elm = document.body;
-    if(elm.requestFullScreen) {
+  elmFullScreenOnButton.addEventListener('click', () => {
+    const elm = document.documentElement;
+    if (elm.requestFullScreen) {
       elm.requestFullScreen();
     } else if(elm.webkitRequestFullScreen) {
       elm.webkitRequestFullScreen();
     } else if(elm.mozRequestFullScreen) {
       elm.mozRequestFullScreen();
+    } else if(elm.msRequestFullScreen) {
+      elm.msRequestFullScreen();
+    }
+  });
+  elmFullScreenOffButton.addEventListener('click', () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
     }
   });
   function onFullScreen(){
     if (document.fullscreenElement) {
       isFullScreen = true;
+      elmFullScreenOn.classList.add('hidden');
+      elmFullScreenOff.classList.remove('hidden');
       elmTab.classList.remove('always-show');
     } else {
       isFullScreen = false;
+      elmFullScreenOn.classList.remove('hidden');
+      elmFullScreenOff.classList.add('hidden');
       if (!isCustomizeOpen) {
         elmTab.classList.add('always-show');
       }
