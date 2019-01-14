@@ -4,11 +4,7 @@ function plusOrMinus(delta){
 
 class Block {
   constructor(position, rotationOffset, tickOffset, settings) {
-    const geometry = new THREE.BoxBufferGeometry(
-      CubeSettings.sizeX,
-      CubeSettings.sizeY,
-      CubeSettings.sizeZ
-    );
+    const geometry = new THREE.BoxBufferGeometry(1, 1, 1);
 
     this.material = new THREE.MeshBasicMaterial({
       color: 0xffffff,
@@ -37,6 +33,11 @@ class Block {
     SCENE.add(this.mesh);
 
     this.rotateTimes(rotationOffset);
+    this.setSize(
+      CubeSettings.sizeX,
+      CubeSettings.sizeY,
+      CubeSettings.sizeZ
+    );
   }
   rotate() {
     this.rotateTimes(1);
@@ -51,6 +52,11 @@ class Block {
   }
   paintWhite() {
     this.material.color = {r: 1, g: 1, b: 1};
+  }
+  setSize(x, y, z){
+    this.mesh.scale.x = x;
+    this.mesh.scale.y = y;
+    this.mesh.scale.z = z;
   }
   static original() {
     return new Block(

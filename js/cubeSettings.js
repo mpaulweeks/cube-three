@@ -50,9 +50,7 @@ const CubeSettings = (() => {
       });
       if (window.SCENE){
         window.SCENE.children.forEach(mesh => {
-          mesh.scale.x = this.sizeX;
-          mesh.scale.y = this.sizeY;
-          mesh.scale.z = this.sizeZ;
+          mesh.block.setSize(this.sizeX, this.sizeY, this.sizeZ);
         });
       }
     }
