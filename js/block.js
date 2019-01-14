@@ -34,18 +34,19 @@ class Block {
 
     this.rotateTimes(rotationOffset);
     this.setSize(
-      CubeSettings.sizeX,
-      CubeSettings.sizeY,
-      CubeSettings.sizeZ
+      CubeSettings.size_x,
+      CubeSettings.size_y,
+      CubeSettings.size_z
     );
   }
   rotate() {
     this.rotateTimes(1);
   }
   rotateTimes(n) {
-    this.mesh.rotation.x += 0.004 * n;
-    this.mesh.rotation.y += 0.004 * n;
-    this.mesh.rotation.z += 0.004 * n;
+    const rotationLimiter = 0.004;
+    this.mesh.rotation.x += (CubeSettings.rotation_x * rotationLimiter) * n;
+    this.mesh.rotation.y += (CubeSettings.rotation_y * rotationLimiter) * n;
+    this.mesh.rotation.z += (CubeSettings.rotation_z * rotationLimiter) * n;
   }
   paint(tick) {
     this.material.color = Rainbow.getColor(this.tickOffset + tick, this.settings);

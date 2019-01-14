@@ -7,20 +7,44 @@ const CubeSettings = (() => {
         {
           draft: "1.0",
           isNum: true,
-          attr: 'sizeX',
-          id: 'settings-x',
+          zeroOk: false,
+          attr: 'size_x',
+          id: 'settings-size-x',
         },
         {
           draft: "1.0",
           isNum: true,
-          attr: 'sizeY',
-          id: 'settings-y',
+          zeroOk: false,
+          attr: 'size_y',
+          id: 'settings-size-y',
         },
         {
           draft: "1.0",
           isNum: true,
-          attr: 'sizeZ',
-          id: 'settings-z',
+          zeroOk: false,
+          attr: 'size_z',
+          id: 'settings-size-z',
+        },
+        {
+          draft: "1.0",
+          isNum: true,
+          zeroOk: true,
+          attr: 'rotation_x',
+          id: 'settings-rotation-x',
+        },
+        {
+          draft: "1.0",
+          isNum: true,
+          zeroOk: true,
+          attr: 'rotation_y',
+          id: 'settings-rotation-y',
+        },
+        {
+          draft: "1.0",
+          isNum: true,
+          zeroOk: true,
+          attr: 'rotation_z',
+          id: 'settings-rotation-z',
         },
       ].map(s => {
         s.elm = document.getElementById(s.id);
@@ -41,7 +65,7 @@ const CubeSettings = (() => {
         if (s.isNum){
           newValue = parseFloat(newValue);
         }
-        if (newValue) {
+        if (newValue || (newValue === 0 && s.zeroOk)) {
           s.value = newValue;
         }
 
@@ -50,7 +74,7 @@ const CubeSettings = (() => {
       });
       if (window.SCENE){
         window.SCENE.children.forEach(mesh => {
-          mesh.block.setSize(this.sizeX, this.sizeY, this.sizeZ);
+          mesh.block.setSize(this.size_x, this.size_y, this.size_z);
         });
       }
     }

@@ -44,9 +44,9 @@ const PRESETS = [
   {
     name: 'rainbow rows',
     settings: {
-      sizeX: '1.0',
-      sizeY: '1.0',
-      sizeZ: '1.0',
+      size_x: '1.0',
+      size_y: '1.0',
+      size_z: '1.0',
     },
     spawners: range(yRange).map((y, yi, yArr) => {
       return range(xRange * 2).map((x, xi, xArr) => {
@@ -67,9 +67,9 @@ const PRESETS = [
   {
     name: 'overlapping cubes',
     settings: {
-      sizeX: '1.0',
-      sizeY: '1.0',
-      sizeZ: '1.0',
+      size_x: '1.0',
+      size_y: '1.0',
+      size_z: '1.0',
     },
     spawners: range(yRange).map((y, yi, yArr) => {
       return range(xRange).map((x, xi, xArr) => {
@@ -90,9 +90,9 @@ const PRESETS = [
   {
     name: 'tiny cubes',
     settings: {
-      sizeX: '0.3',
-      sizeY: '0.3',
-      sizeZ: '0.3',
+      size_x: '0.3',
+      size_y: '0.3',
+      size_z: '0.3',
     },
     spawners: range(yRange * 2).map((y, yi, yArr) => {
       return range(xRange * 2).map((x, xi, xArr) => {
@@ -113,9 +113,9 @@ const PRESETS = [
   {
     name: 'dominos',
     settings: {
-      sizeX: '0.5',
-      sizeY: '0.5',
-      sizeZ: '0.1',
+      size_x: '0.5',
+      size_y: '0.5',
+      size_z: '0.1',
     },
     spawners: range(yRange).map((y, yi, yArr) => {
       return range(xRange * 2).map((x, xi, xArr) => {
@@ -136,9 +136,9 @@ const PRESETS = [
   {
     name: 'pick-up sticks',
     settings: {
-      sizeX: '2.0',
-      sizeY: '0.1',
-      sizeZ: '0.1',
+      size_x: '2.0',
+      size_y: '0.1',
+      size_z: '0.1',
     },
     spawners: range(yRange * 2).map((y, yi, yArr) => {
       return range(xRange * 2).map((x, xi, xArr) => {
@@ -159,9 +159,9 @@ const PRESETS = [
   {
     name: 'empty / reset',
     settings: {
-      sizeX: '1.0',
-      sizeY: '1.0',
-      sizeZ: '1.0',
+      size_x: '1.0',
+      size_y: '1.0',
+      size_z: '1.0',
     },
     spawners: [],
   },
