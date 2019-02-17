@@ -166,5 +166,5 @@ createJukebox({
 }).then(jukebox => {
   const elm = document.getElementById('jukebox-open');
   elm.parentElement.classList.remove('hidden');
-  elm.addEventListener('click', jukebox.toggle);
+  elm.addEventListener('click', jukebox.open);
 });
