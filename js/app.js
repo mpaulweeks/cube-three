@@ -160,11 +160,14 @@ Block.original();
 animate();
 
 // optional jukebox stuff
-createJukebox({
-  // todo
-  color_scheme: 'dark',
-}).then(jukebox => {
-  const elm = document.getElementById('jukebox-open');
-  elm.parentElement.classList.remove('hidden');
-  elm.addEventListener('click', jukebox.open);
-});
+
+// disabled while broken on firefox
+
+// createJukebox({
+//   // todo
+//   color_scheme: 'dark',
+// }).then(jukebox => {
+//   const elm = document.getElementById('jukebox-open');
+//   elm.parentElement.classList.remove('hidden');
+//   elm.addEventListener('click', jukebox.open);
+// });
