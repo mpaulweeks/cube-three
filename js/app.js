@@ -161,8 +161,8 @@ animate();
 
 // optional jukebox stuff
 createJukebox({
-  // todo cubism playlist
   colorScheme: 'dark',
+  playlists: 'Knasibas',
 }).then(jukebox => {
   const elm = document.getElementById('jukebox-open');
   elm.parentElement.classList.remove('hidden');
